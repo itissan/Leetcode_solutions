@@ -1,0 +1,24 @@
+class Solution(object):
+    def validMountainArray(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+         
+        if len(arr)<3:
+                return False
+        increasing = False
+        decreasing = False
+
+        for i in range(len(arr)-1):
+            if arr[i] == arr[i+1]:
+                return False 
+            if decreasing and not increasing:
+                return False
+            if decreasing and arr[i+1]>arr[i]:
+                return False 
+            if arr[i+1]>arr[i]:
+                increasing = True
+            elif arr[i+1]<arr[i]:
+                decreasing = True
+        return increasing and decreasing
